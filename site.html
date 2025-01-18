@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background-color: white; /* Arrière-plan par défaut blanc */
+            color: black; /* Couleur du texte par défaut */
+        }
+
+        .intro {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 12px; /* Taille de police plus petite */
+            opacity: 0; /* Commence invisible */
+            animation: fadeInUp 2s ease-in-out forwards; /* Durée augmentée et easing ajouté */
+            background-color: black; /* Arrière-plan noir pour la section d'introduction */
+            color: white; /* Couleur du texte blanche pour la section d'introduction */
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px); /* Déplacement vers le bas */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0); /* Retour à la position d'origine */
+            }
+        }
+
+        .portfolio {
+            display: none; /* Cacher le portfolio par défaut */
+            opacity: 0;
+            transition: opacity 2s ease-in-out; /* Durée augmentée et easing ajouté */
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 2s ease-in-out forwards; /* Durée augmentée et easing ajouté */
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px); /* Déplacement vers le bas */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0); /* Retour à la position d'origine */
+            }
+        }
+
+        .portfolio.active {
+            display: block; /* Afficher le portfolio */
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="intro" id="intro">
+        <pre>
+          _____           _       _             
+         |  __ \         | |     | |            
+         | |__) |__  ___| | __ _| |_ ___  _ __ 
+         |  ___/ _ \/ __| |/ _` | __/ _ \| '__|
+         | |  |  __/ (__| | (_| | || (_) | |   
+         |_|   \___|\___|_|\__,_|\__\___/|_|   
+        </pre>
+    </div>
+    
+    <div class="portfolio" id="portfolio">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    /* Root variables for theming */
+    :root {
+      --background: #f9f9f9;
+      --text-color: #333333; /* Default text color */
+      --primary-color: #4CAF50; /* A calm green for primary color */
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --toggle-bg: #e0e7ff;
+      --icon-color: #4CAF50; /* Green for moon icon */
+      --icon-hover: #ffde59; /* Yellow for moon icon */
+      --intro-background: rgba(0, 0, 0, 0);
+      --title-color: #2d3748; /* Dark gray for titles */
+      --subtitle-color: #4a5568; /* Lighter gray for subtitles */
+      --link-color: #2d3748; /* Dark gray for links */
+      --link-hover-color: #81C784; /* Lighter green for hover effect */
+    }
+
+    [data-theme="dark"] {
+      --background: #121212;
+      --text-color: #e5e5e5; /* Light text color for dark theme */
+      --primary-color: #81C784; /* Lighter green */
+      --card-bg: #1e1e1e;
+      --card-shadow: rgba(0, 0, 0, 0.3);
+      --toggle-bg: #333333;
+      --icon-color: #81C784;
+      --icon-hover: #ffde59;
+      --intro-background: rgba(0, 0, 0, 0);
+      --title-color: #e2e8f0; /* Light color for titles in dark theme */
+      --subtitle-color: #a0aec0; /* Lighter gray for subtitles in dark theme */
+      --link-color: #e2e8f0; /* Light color for links */
+      --link-hover-color: #81C784; /* Lighter green for hover effect */
+    }
+
+    /* Global styles */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--card-bg);
+      box-shadow: 0 2px 10px var(--card-shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color); /* Updated brand color */
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border: none;
+      border-radius: 50%;
+      background-color: var(--toggle-bg);
+      color: var(--icon-color);
+      cursor: pointer;
+      box-shadow: 0 4px 8px var(--card-shadow);
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      background-color: var(--primary-color);
+    }
+
+    .theme-toggle i {
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .theme-toggle:hover i {
+      color: var(--icon-hover); /* Change icon color on hover */
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 50px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      border-left: 5px solid var(--primary-color); /* Updated border color */
+      padding-left: 15px;
+      color: var(--title-color); /* Title color */
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      color: var(--subtitle-color); /* Subtitle color */
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      box-shadow: 0 4px 8px var(--card-shadow);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 15px var(--card-shadow);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+      font-size: 1rem;
+      border-top: 2px solid var(--primary-color);
+    }
+
+    .card a {
+      text-decoration: none;
+      color: var(--link-color); /* Default link color */
+      transition: color 0.3s ease;
+    }
+
+    .card a:hover {
+      color: var(--link-hover-color); /* Hover effect color */
+    }
+
+    /* Intro screen style */
+    .intro-screen {
+      display: none;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .brand {
+        margin-bottom: 10px;
+      }
+
+      main {
+        padding: 10px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="brand">Portfolio</div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+      <i class="fas fa-moon"></i>
+    </button>
+  </header>
+
+  <main>
+    <section>
+      <h2>About Me</h2>
+      <div class="card">
+        <p>Hi! I'm a creative web developer passionate about crafting innovative and user-friendly digital experiences.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <div class="card">
+        <p><a href="#project1">Project 1:</a> Responsive Website Design - A fully responsive and modern portfolio template.</p>
+      </div>
+      <div class="card">
+        <p><a href="#project2">Project 2:</a> Data Security Dashboard - Interactive and secure data visualization tool.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <div class="card">
+        <p>Let's connect! Email me at <a href="mailto:example@example.com">example@example.com</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2024 Your Name. Crafted with care and innovation.
+  </footer>
+
+  <script>
+    // Theme Toggle Function
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const isDark = currentTheme === 'dark';
+
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+
+      // Update the button icon
+      const toggleButton = document.querySelector('.theme-toggle i');
+      toggleButton.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    // Initialize theme
+    document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
+</body>
+</html>
+    </div>
+
+    <script>
+        document.getElementById('intro').addEventListener('click', function() {
+            // Cacher l'intro
+            this.style.opacity = 0;
+
+            // Afficher le portfolio
+            const portfolio = document.getElementById('portfolio');
+            portfolio.classList.add('active');
+            this.style.display = 'none'; // Cacher l'intro immédiatement
+        });
+    </script>
+</body>
+</html>

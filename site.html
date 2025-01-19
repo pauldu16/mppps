@@ -145,18 +145,39 @@
     }
 
   header {
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: var(--card-bg);
-      box-shadow: 0 2px 10px var(--card-shadow);
-      position: sticky;
-      top: 20px;
-      z-index: 1000;
-      border-radius: 20px; /* Coins arrondis */
-      margin: 0 20px; /* Proportions équilibrées */
-    }
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Assure l'alignement vertical */
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 10px var(--card-shadow);
+    position: sticky;
+    top: 20px;
+    z-index: 1000;
+    border-radius: 20px;
+    margin: 0 20px;
+  }
+
+  .theme-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--card-shadow);
+    transition: background-color 0.3s ease;
+  }
+
+  .theme-toggle:hover {
+    background-color: var(--text-color);
+  }
+
+  .theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-color);
+  }
 
     .brand {
       font-size: 1.8rem;
